@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes.js";
 import { pool, testConnection } from "./config/db.js";
+import { arcjetMiddleware } from "./lib/arcjet.js";
 
 // Cấu hình dotenv để đọc các biến môi trường từ file .env
 dotenv.config();
@@ -17,6 +18,9 @@ app.use(helmet()); // Bảo mật HTTP headers
 app.use(morgan("dev")); // Ghi log các request
 app.use(express.json()); // Parse JSON request body
 app.use(cors()); // Cho phép Cross-Origin Resource Sharing
+
+// Middleware bảo mật Arcjet - áp dụng trước các routes
+app.use(arcjetMiddleware);
 
 // Routes
 app.use("/api/products", productRoutes); // Định tuyến cho các endpoint sản phẩm
