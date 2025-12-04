@@ -1,10 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Productpage from "./pages/Productpage";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen bg-base-200 transition-colors duration-300">
+      <Navbar />
       {/* Định tuyến cho các trang trong ứng dụng */}
       <Routes>
         {/* Trang chủ - đường dẫn gốc */}
